@@ -3,207 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anniversary ❤️</title>
+    <title>ของขวัญ - THE TOYS ❤️</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
-        body { background-color: #fff0f3; text-align: center; font-family: 'Arial', sans-serif; color: #ff4d6d; padding: 50px 20px; margin: 0; }
-        .container { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); max-width: 400px; margin: auto; }
-        h1 { font-size: 1.8rem; margin-bottom: 10px; }
-        .days-box { font-size: 2.5rem; font-weight: bold; margin: 20px 0; color: #ff1a4d; }
-        p { font-size: 1.1rem; color: #555; line-height: 1.6; }
-        .btn { background: #ff4d6d; color: white; border: none; padding: 12px 25px; border-radius: 30px; font-size: 1rem; cursor: pointer; margin-top: 20px; box-shadow: 0 4px 10px rgba(255, 77, 109, 0.3); }
+        body { background-color: #fff0f3; text-align: center; font-family: sans-serif; color: #ff4d6d; padding: 30px 20px; margin: 0; }
+        .container { background: white; padding: 25px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 350px; margin: auto; }
+        
+        /* สไตล์แผ่นเสียง */
+        .vinyl-container { position: relative; width: 220px; height: 220px; margin: 20px auto; cursor: pointer; }
+        .vinyl-record {
+            width: 100%; height: 100%; border-radius: 50%; border: 10px solid #333;
+            /* ใส่ลิงก์รูปคู่ รูปที่ 2 (แผ่นเสียงหมุน) */
+            background-image: url('https://i.pinimg.com/originals/ce/0c/33/ce0c330f88288009c536443c72b226e6.jpg'); 
+            background-size: cover; background-position: center;
+            animation: rotateVinyl 8s linear infinite; animation-play-state: paused;
+        }
+        .vinyl-label { 
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+            width: 45%; height: 45%; background: rgba(255,255,255,0.95); border-radius: 50%; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            font-size: 10px; font-weight: bold; color: #333; text-align: center; padding: 5px;
+        }
+        @keyframes rotateVinyl { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .playing { animation-play-state: running; }
+
+        /* สไตล์ปุ่มเปิดจดหมาย */
+        .letter-btn { background: #ff4d6d; color: white; border: none; padding: 12px 25px; border-radius: 50px; font-size: 16px; cursor: pointer; margin-top: 25px; box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3); }
+        
+        /* สไตล์หน้าต่างจดหมาย (Pop-up) */
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 100; align-items: center; justify-content: center; }
+        .letter-content { 
+            background: #fff9fa; width: 85%; max-width: 400px; padding: 30px; border-radius: 15px; 
+            position: relative; text-align: left; color: #444; line-height: 1.8; box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+            max-height: 70vh; overflow-y: auto; 
+        }
+        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 25px; cursor: pointer; color: #aaa; }
+        .days-text { font-size: 1.5rem; margin: 15px 0; }
+        
+        /* สไตล์รูปคู่ รูปที่ 1 (แสดงด้านล่าง) */
+        .extra-photo { width: 100%; max-width: 300px; border-radius: 15px; margin-top: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Happy Anniversary ⸝⸝☘︎</h1>
-        <div class="days-box" id="counter">นับถอยหลัง...</div>
-        <p>ขอบคุณที่เป็นเรื่องราวดีๆ ในชีวิตนะ<br>รักที่สุดเลย!</p>
-        <button class="btn" onclick="celebrate()">คลิกดูเซอร์ไพรส์!</button>
-    </div>
+
+<div class="container">
+    <h1>Happy Anniversary 3m with babii</h1>
+    
     <div class="vinyl-container" onclick="toggleMusic()">
-    <div id="record" class="vinyl-record">
-        <div class="vinyl-label">
-            <p class="song-title">ของขวัญ - The Toys 🎵</p> 
-            <p class="artist">flem & zogus</p>
-            <p class="special-msg">i'm so lucky!</p>
+        <div id="record" class="vinyl-record">
+            <div class="vinyl-label">
+                <p>ของขวัญ 🎵</p>
+                <p>The Toys</p>
+                <p>❤️</p>
+            </div>
         </div>
+    </div>
+    
+    <div class="days-text" id="counter">... วันแล้วนะ</div>
+
+    <button class="letter-btn" onclick="openLetter()">📩 open !!</button>
+
+    <img src="https://i.pinimg.com/originals/a0/0b/c3/a00bc3243176166542b26b38996b72a6.jpg" alt="Our Memory" class="extra-photo">
+</div>
+
+<div id="letterOverlay" class="overlay">
+    <div class="letter-content">
+        <span class="close-btn" onclick="closeLetter()">&times;</span>
+        <h3 style="color: #ff4d6d;">To my gf☝🏻😽 </h3>
+        <p>
+            ขอบคุณที่อยู่ด้วยกันมาจนถึงวันนี้นะจ๊ะ... <br>
+            มีความสุขมากๆ เลยที่มีเธอเข้ามาทำให้ชีวิตของเค้ามีสีสันมากขึ้น เค้ามีความสุขมาดที่มีเธออยู่ เค้าหวังว่าจะมีเธอแบบนี้ไปเรื่อยๆ จนได้ทำในสิ่งที่เพลนกันไว่ ที่เทียวที่อยากไป สิ่งทีได่ทำด้วยกัน <br>
+            ถึงบางคบางครั้งเค้าจะทำตัวไมดีไปบ้างก็ขอโทษด้วย เค้ากลัวมากมากเลยกลัวว่าเล็บจะเบื่อกันสะก่อนแต่ว่า <br>
+            เค้าจะทำวันที่มีกันอยู่ให้ดีนะ อันนี้เค้ากตั้งใจทำหั้ยหวังว่าจะชอบนะ อยู่ดูแลคนขิ้น้อยใจคนนี้ไปนานๆ เลยนะ <br>
+            ถึงบางวันเราจะคุยกันจนไม่มีเรื่องอะไรจะคุยกันแล้ว ถึงเบ้บจะชอบพิมข้อความเดิมๆ ทุกวันเค้าก็ไม่เคยเบื่อ <br>
+            แล้วก็เบ่บเก่งที่สดในโลกเล้ย อยากให้ภูมิใจในตัวเองเย้อๆ
+        </p>
+        <p style="text-align: right;">รักที่สุดในโลกเย้ย </p>
     </div>
 </div>
 
 <audio id="mySong" loop>
-    <source src="The Toys - à¸_à¸_à¸_à¸_à¸§à¸±à¸_ - Cover Version (SPOTISAVER).mp3" type="audio/mpeg"> </audio>
-    
-    /* คอนเทนเนอร์คุมขนาด */
-.vinyl-container { 
-    position: relative; 
-    width: 220px; 
-    height: 220px; 
-    margin: 20px auto; 
-    cursor: pointer; 
-}
+    <source src="The Toys - à¸_à¸_à¸_à¸_à¸§à¸±à¸_ - Cover Version (SPOTISAVER).mp3" type="audio/mpeg">
+</audio>
 
-/* ตัวแผ่นเสียง (รูปคู่) */
-.vinyl-record {
-    width: 100%; 
-    height: 100%; 
-    border-radius: 50%;
-    border: 10px solid #333; /* ขอบแผ่นเสียงสีดำ */
-    background-image: url('https://pin.it/105UMVc9I'); /* ใส่ชื่อไฟล์รูปคู่ของคุณ */
-    background-size: cover; 
-    background-position: center;
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
-    animation: rotateVinyl 5s linear infinite;
-    animation-play-state: paused; /* เริ่มต้นให้หยุดนิ่ง */
-}
-
-/* ฉลากสีขาวตรงกลาง */
-.vinyl-label {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 45%; height: 45%;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 50%;
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    text-align: center; padding: 5px;
-}
-
-.song-title { font-size: 0.8rem; font-weight: bold; margin: 0; color: #333; }
-.artist { font-size: 0.6rem; color: #777; margin: 0; }
-.special-msg { font-size: 0.7rem; color: #ff4d6d; margin-top: 3px; font-weight: bold; }
-
-/* คำสั่งอนิเมชั่นการหมุน */
-@keyframes rotateVinyl { 
-    from { transform: rotate(0deg); } 
-    to { transform: rotate(360deg); } 
-}
-
-/* คลาสสำหรับสั่งให้หมุนเมื่อเล่นเพลง */
-.playing { animation-play-state: running; }
+<script>
     const song = document.getElementById("mySong");
-const record = document.getElementById("record");
+    const record = document.getElementById("record");
 
-function toggleMusic() {
-    if (song.paused) {
-        song.play();
-        record.classList.add("playing"); // สั่งให้แผ่นหมุน
-    } else {
-        song.pause();
-        record.classList.remove("playing"); // สั่งให้แผ่นหยุด
+    // คำนวณวัน (เปลี่ยนวันที่เริ่มคบกันตรงนี้)
+    const startDate = new Date('2026-01-26'); 
+    const today = new Date();
+    const diffDays = Math.ceil(Math.abs(today - startDate) / (1000 * 60 * 60 * 24));
+    document.getElementById('counter').innerText = diffDays + " วันแล้วนะ";
+
+    // ฟังก์ชันเล่น/หยุดเพลง และหมุนแผ่นเสียง
+    function toggleMusic() {
+        if (song.paused) {
+            song.play();
+            record.classList.add("playing");
+        } else {
+            song.pause();
+            record.classList.remove("playing");
+        }
     }
-}
-    <button class="cute-letter-btn" onclick="openCuteLetter()">
-    💖 <br> กดเพื่อเปิดจดหมายรัก <br> 📩
-</button>
 
-<div id="cuteLetterOverlay" class="cute-overlay">
-    <div class="cute-letter-content">
-        <span class="cute-close-btn" onclick="closeCuteLetter()">&times;</span>
-        
-        <div class="cute-letter-header">
-            <h3>💌 To: Special Someone 💌</h3>
-        </div>
-        
-        <div class="cute-scroll-text">
-            <p>
-                ขอบคุณที่อยู่ด้วยกันมาจนถึงวันนี้นะจ๊ะ... 
-                มีความสุขมากๆ เลยที่มีเธอเข้ามาทำให้ชีวิตของเค้ามีสีสันมากขึ้นเค้ามีความสุขมาดที่มีเธออยู่ เค้าหวังว่าจะมีเธอแบบนี้ไปเรื่อยๆ จนได้ทำในสิ่งที่เพลนกันไว่ ที่เทียวที่อยากไปสิ่งทีได่ทำด้วยกัน
-                ถึงบางคบางครั้งเค้าจะทำตัวไมดีไปบ้างก็ขอโทษด้วย เค้ากลัวมากมากเลยกลัวว่าเล็บจะเบื่อกันสะก่อนแตก่อนแต่ว่า
-                เค้าจะทำวันที่มีกันอยู่ให้ดีนะ อันนี้เค้ากตั้งใจทำหั้ยหวังว่าจะชอบนะ อยู่ดูแลคนขิ้น้อยใจคนนี้ไปนานๆเลยนะ 
-                ถึงบางวันเราจะคุยกันจนไม่มีเรื่องอะไรจะคุยกันแล้ว ถึงเบ้บจะชอบพิมข้อความเดิมๆ ทุกวันเค้าก็ไม่เคยเบื่อ
-                แล้วก็เบ่บเก่งที่สดในโลกเล้ย อยากให้ภูมิใจในตัวเองเย้อๆ
-            </p>
-            <p>รักที่สุดในโลกเลยนะ!</p>
-        </div>
-        
-        <p style="text-align: right; color: #ffb6c1; margin-top: 15px;">รักเสมอ ❤️</p>
-    </div>
-</div>
-    /* ปุ่มกดแบบน่ารัก (น่ารักและกดง่าย) */
-.cute-letter-btn {
-    background-color: #ffb6c1; /* สีชมพูพาสเทลอ่อนๆ */
-    color: white; border: none; padding: 15px 25px;
-    border-radius: 20px; font-size: 16px; cursor: pointer;
-    margin-top: 25px; box-shadow: 0 4px 10px rgba(255, 182, 193, 0.4);
-    line-height: 1.4; transition: transform 0.2s; /* เอฟเฟกต์ตอนกด */
-}
-.cute-letter-btn:active { transform: scale(0.95); } /* หดตัวตอนกด */
-
-/* พื้นหลังตอนเปิดจดหมาย (โปร่งแสงและนุ่มนวล) */
-.cute-overlay {
-    display: none; position: fixed; top: 0; left: 0;
-    width: 100%; height: 100%; background-color: rgba(255, 240, 245, 0.8); /* สีพื้นหลังโปร่งแสงอ่อนๆ */
-    z-index: 1000; align-items: center; justify-content: center;
-    opacity: 0; transition: opacity 0.3s ease; /* Fade-in */
-}
-.cute-overlay.show { opacity: 1; display: flex; } /* คลาสสำหรับแสดงผล */
-
-/* ตัวกล่องจดหมาย */
-.cute-letter-content {
-    background-color: #fff9fa; /* สีขาวอมชมพูอ่อนมากๆ */
-    width: 85%; max-width: 420px; padding: 35px 30px;
-    border-radius: 30px; position: relative; text-align: left;
-    color: #444; line-height: 1.8;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* เงาบางๆ */
-    transform: translateY(20px); transition: transform 0.3s ease; /* Slide-up */
-}
-.cute-overlay.show .cute-letter-content { transform: translateY(0); } /* คลาสสำหรับแสดงผล */
-
-/* ส่วนหัวจดหมาย */
-.cute-letter-header {
-    border-bottom: 2px dashed #ffb6c1; /* เส้นประสีชมพู */
-    margin-bottom: 20px; padding-bottom: 10px;
-    color: #ffb6c1; font-weight: bold; font-size: 1.2rem;
-}
-
-/* ส่วนที่ทำให้ข้อความยาวๆ เลื่อนได้ (Scroll) */
-.cute-scroll-text {
-    max-height: 55vh; overflow-y: auto; padding-right: 15px;
-}
-.cute-scroll-text::-webkit-scrollbar { width: 6px; } /* สไตล์ Scrollbar */
-.cute-scroll-text::-webkit-scrollbar-thumb { background-color: #ffb6c1; border-radius: 10px; }
-
-/* ปุ่มปิดรูปกากบาท (น่ารักและชัดเจน) */
-.cute-close-btn {
-    position: absolute; top: 15px; right: 20px;
-    font-size: 30px; cursor: pointer; color: #ffb6c1;
-    transition: color 0.2s;
-}
-.cute-close-btn:hover { color: #ff4d6d; }
-    function openCuteLetter() {
-    const overlay = document.getElementById('cuteLetterOverlay');
-    overlay.classList.add('show'); // สั่งให้แสดงผลแบบ Fade-in
-    if (typeof confetti !== 'undefined') {
+    // ฟังก์ชันเปิดจดหมายพร้อมพลุ
+    function openLetter() {
+        document.getElementById('letterOverlay').style.display = 'flex';
+        // พลุกระดาษฉลอง
         confetti({ particleCount: 200, spread: 80, origin: { y: 0.7 } });
     }
-}
 
-function closeCuteLetter() {
-    const overlay = document.getElementById('cuteLetterOverlay');
-    overlay.classList.remove('show'); // สั่งให้ซ่อนแบบ Fade-out
-}
-    
-    <script>
-        // --- ส่วนคำนวณวัน ---
-        // เปลี่ยนวันที่ตรงนี้เป็นวันที่เริ่มคบกัน )
-        const startDate = new Date('2026-01-26'); 
-        const today = new Date(2026-04-26);
-        const diffTime = Math.abs(today - startDate);
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-        document.getElementById('counter').innerText = diffDays + " วัน";
+    // ฟังก์ชันปิดจดหมาย
+    function closeLetter() {
+        document.getElementById('letterOverlay').style.display = 'none';
+    }
+</script>
 
-        // --- ส่วนพลุกระดาษ ---
-        function celebrate() {
-            confetti({
-                particleCount: 150,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#ff4d6d', '#ffafcc', '#ff1a4d']
-            });
-        }
-        // ให้พลุระเบิดตอนเปิดหน้าเว็บด้วย
-        window.onload = celebrate;
-    </script>
 </body>
-</html>
-
+                                                                   </html>
+                                                                   
