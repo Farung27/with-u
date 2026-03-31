@@ -21,7 +21,77 @@
         <p>ขอบคุณที่เป็นเรื่องราวดีๆ ในชีวิตนะ<br>รักที่สุดเลย!</p>
         <button class="btn" onclick="celebrate()">คลิกดูเซอร์ไพรส์!</button>
     </div>
+    <div class="vinyl-container" onclick="toggleMusic()">
+    <div id="record" class="vinyl-record">
+        <div class="vinyl-label">
+            <p class="song-title">ชื่อเพลงของเรา 🎵</p> 
+            <p class="artist">flem & zogus</p>
+            <p class="special-msg">i'm so lucky!</p>
+        </div>
+    </div>
+</div>
 
+<audio id="mySong" loop>
+    <source src="music.mp3" type="audio/mpeg"> </audio>
+    
+    /* คอนเทนเนอร์คุมขนาด */
+.vinyl-container { 
+    position: relative; 
+    width: 220px; 
+    height: 220px; 
+    margin: 20px auto; 
+    cursor: pointer; 
+}
+
+/* ตัวแผ่นเสียง (รูปคู่) */
+.vinyl-record {
+    width: 100%; 
+    height: 100%; 
+    border-radius: 50%;
+    border: 10px solid #333; /* ขอบแผ่นเสียงสีดำ */
+    background-image: url('https://pin.it/105UMVc9I'); /* ใส่ชื่อไฟล์รูปคู่ของคุณ */
+    background-size: cover; 
+    background-position: center;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    animation: rotateVinyl 5s linear infinite;
+    animation-play-state: paused; /* เริ่มต้นให้หยุดนิ่ง */
+}
+
+/* ฉลากสีขาวตรงกลาง */
+.vinyl-label {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%; height: 45%;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; padding: 5px;
+}
+
+.song-title { font-size: 0.8rem; font-weight: bold; margin: 0; color: #333; }
+.artist { font-size: 0.6rem; color: #777; margin: 0; }
+.special-msg { font-size: 0.7rem; color: #ff4d6d; margin-top: 3px; font-weight: bold; }
+
+/* คำสั่งอนิเมชั่นการหมุน */
+@keyframes rotateVinyl { 
+    from { transform: rotate(0deg); } 
+    to { transform: rotate(360deg); } 
+}
+
+/* คลาสสำหรับสั่งให้หมุนเมื่อเล่นเพลง */
+.playing { animation-play-state: running; }
+    const song = document.getElementById("mySong");
+const record = document.getElementById("record");
+
+function toggleMusic() {
+    if (song.paused) {
+        song.play();
+        record.classList.add("playing"); // สั่งให้แผ่นหมุน
+    } else {
+        song.pause();
+        record.classList.remove("playing"); // สั่งให้แผ่นหยุด
+    }
+}
     <script>
         // --- ส่วนคำนวณวัน ---
         // เปลี่ยนวันที่ตรงนี้เป็นวันที่เริ่มคบกัน )
