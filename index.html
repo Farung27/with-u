@@ -92,6 +92,96 @@ function toggleMusic() {
         record.classList.remove("playing"); // สั่งให้แผ่นหยุด
     }
 }
+    <button class="cute-letter-btn" onclick="openCuteLetter()">
+    💖 <br> กดเพื่อเปิดจดหมายรัก <br> 📩
+</button>
+
+<div id="cuteLetterOverlay" class="cute-overlay">
+    <div class="cute-letter-content">
+        <span class="cute-close-btn" onclick="closeCuteLetter()">&times;</span>
+        
+        <div class="cute-letter-header">
+            <h3>💌 To: Special Someone 💌</h3>
+        </div>
+        
+        <div class="cute-scroll-text">
+            <p>
+                ขอบคุณที่อยู่ด้วยกันมาจนถึงวันนี้นะจ๊ะ... 
+                มีความสุขมากๆ เลยที่มีเธอเข้ามาทำให้ชีวิตของเค้ามีสีสันมากขึ้นเค้ามีความสุขมาดที่มีเธออยู่ เค้าหวังว่าจะมีเธอแบบนี้ไปเรื่อยๆ จนได้ทำในสิ่งที่เพลนกันไว่ ที่เทียวที่อยากไปสิ่งทีได่ทำด้วยกัน
+                ถึงบางคบางครั้งเค้าจะทำตัวไมดีไปบ้างก็ขอโทษด้วย เค้ากลัวมากมากเลยกลัวว่าเล็บจะเบื่อกันสะก่อนแตก่อนแต่ว่า
+                เค้าจะทำวันที่มีกันอยู่ให้ดีนะ อันนี้เค้ากตั้งใจทำหั้ยหวังว่าจะชอบนะ อยู่ดูแลคนขิ้น้อยใจคนนี้ไปนานๆเลยนะ 
+                
+            </p>
+            <p>รักที่สุดในโลกเลยนะ!</p>
+        </div>
+        
+        <p style="text-align: right; color: #ffb6c1; margin-top: 15px;">รักเสมอ ❤️</p>
+    </div>
+</div>
+    /* ปุ่มกดแบบน่ารัก (น่ารักและกดง่าย) */
+.cute-letter-btn {
+    background-color: #ffb6c1; /* สีชมพูพาสเทลอ่อนๆ */
+    color: white; border: none; padding: 15px 25px;
+    border-radius: 20px; font-size: 16px; cursor: pointer;
+    margin-top: 25px; box-shadow: 0 4px 10px rgba(255, 182, 193, 0.4);
+    line-height: 1.4; transition: transform 0.2s; /* เอฟเฟกต์ตอนกด */
+}
+.cute-letter-btn:active { transform: scale(0.95); } /* หดตัวตอนกด */
+
+/* พื้นหลังตอนเปิดจดหมาย (โปร่งแสงและนุ่มนวล) */
+.cute-overlay {
+    display: none; position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%; background-color: rgba(255, 240, 245, 0.8); /* สีพื้นหลังโปร่งแสงอ่อนๆ */
+    z-index: 1000; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.3s ease; /* Fade-in */
+}
+.cute-overlay.show { opacity: 1; display: flex; } /* คลาสสำหรับแสดงผล */
+
+/* ตัวกล่องจดหมาย */
+.cute-letter-content {
+    background-color: #fff9fa; /* สีขาวอมชมพูอ่อนมากๆ */
+    width: 85%; max-width: 420px; padding: 35px 30px;
+    border-radius: 30px; position: relative; text-align: left;
+    color: #444; line-height: 1.8;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* เงาบางๆ */
+    transform: translateY(20px); transition: transform 0.3s ease; /* Slide-up */
+}
+.cute-overlay.show .cute-letter-content { transform: translateY(0); } /* คลาสสำหรับแสดงผล */
+
+/* ส่วนหัวจดหมาย */
+.cute-letter-header {
+    border-bottom: 2px dashed #ffb6c1; /* เส้นประสีชมพู */
+    margin-bottom: 20px; padding-bottom: 10px;
+    color: #ffb6c1; font-weight: bold; font-size: 1.2rem;
+}
+
+/* ส่วนที่ทำให้ข้อความยาวๆ เลื่อนได้ (Scroll) */
+.cute-scroll-text {
+    max-height: 55vh; overflow-y: auto; padding-right: 15px;
+}
+.cute-scroll-text::-webkit-scrollbar { width: 6px; } /* สไตล์ Scrollbar */
+.cute-scroll-text::-webkit-scrollbar-thumb { background-color: #ffb6c1; border-radius: 10px; }
+
+/* ปุ่มปิดรูปกากบาท (น่ารักและชัดเจน) */
+.cute-close-btn {
+    position: absolute; top: 15px; right: 20px;
+    font-size: 30px; cursor: pointer; color: #ffb6c1;
+    transition: color 0.2s;
+}
+.cute-close-btn:hover { color: #ff4d6d; }
+    function openCuteLetter() {
+    const overlay = document.getElementById('cuteLetterOverlay');
+    overlay.classList.add('show'); // สั่งให้แสดงผลแบบ Fade-in
+    if (typeof confetti !== 'undefined') {
+        confetti({ particleCount: 200, spread: 80, origin: { y: 0.7 } });
+    }
+}
+
+function closeCuteLetter() {
+    const overlay = document.getElementById('cuteLetterOverlay');
+    overlay.classList.remove('show'); // สั่งให้ซ่อนแบบ Fade-out
+}
+    
     <script>
         // --- ส่วนคำนวณวัน ---
         // เปลี่ยนวันที่ตรงนี้เป็นวันที่เริ่มคบกัน )
