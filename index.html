@@ -54,7 +54,7 @@
             <div class="vinyl-label">
                 <p>ของขวัญ 🎵</p>
                 <p>The Toys</p>
-                <p>❤️</p>
+                <p>ให้เพลงนี้เป็นของขวัญของเบ้บนะ</p>
             </div>
         </div>
     </div>
@@ -119,24 +119,3 @@
         document.getElementById('letterOverlay').style.display = 'none';
     }
 </script>
-
-</body>
-
-    const images = [
-        'https://i.pinimg.com/originals/14/06/66/1406664973347528e1d5225103c8c6a0.png',
-        'https://i.pinimg.com/originals/96/12/f2/9612f2796e626e382ba1752b1263884f.png'
-    ];
-    function createChiikawa() {
-        const c = document.createElement('div');
-        c.className = 'floating-chiikawa';
-        c.style.left = Math.random() * 100 + 'vw';
-        c.style.backgroundImage = `url('${images[Math.floor(Math.random()*images.length)]}')`;
-        c.style.animationDuration = (Math.random() * 5 + 5) + 's';
-        document.body.appendChild(c);
-        setTimeout(() => c.remove(), 10000);
-    }
-    setInterval(createChiikawa, 700);
-</script>
-
-</body>
-</html>
