@@ -121,5 +121,64 @@
 </script>
 
 </body>
+
+    /* --- ส่วนชิกาว่าลอย (Floating Chiikawa) --- */
+.floating-chiikawa {
+    position: fixed;
+    bottom: -100px; /* เริ่มลอยจากใต้หน้าจอ */
+    width: 60px; /* ขนาดชิกาว่า */
+    height: 60px; /* ขนาดชิกาว่า */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: floatChiikawa 10s linear infinite; /* ใช้ Animation 'floatChiikawa' */
+    z-index: -1; /* ให้ชิกาว่าลอยอยู่ข้างหลังเนื้อหาหลัก */
+}
+
+@keyframes floatChiikawa {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1; /* ค่อยๆ ปรากฏขึ้น */
+    }
+    90% {
+        opacity: 1; /* แสดงผลนานๆ */
+    }
+    100% {
+        transform: translateY(-120vh) rotate(360deg); /* ลอยขึ้นเหนือหน้าจอและหมุน */
+        opacity: 0; /* ค่อยๆ หายไป */
+    }
+}
+    // --- ฟังก์ชันสร้างชิกาว่าลอย ---
+const chiikawaImages = [
+    // ใส่ลิงก์รูปชิกาว่าที่คุณอยากให้ลอย (เป็นไฟล์ .png หรือ .gif ที่ไม่มีพื้นหลังจะดีที่สุด)
+    'https://i.pinimg.com/originals/14/06/66/1406664973347528e1d5225103c8c6a0.png', // ชิกาว่าตัวเล็กๆ น่ารักๆ
+    'https://i.pinimg.com/originals/ce/0c/33/ce0c330f88288009c536443c72b226e6.png', // ชิกาว่าแบบ gif ขยับได้นิดหน่อย
+    // 'https://ลิงก์รูปชิกาว่าอื่นๆ.png' // ใส่ลิงก์รูปเพิ่มได้ตามใจชอบ
+];
+
+function createFloatingChiikawa() {
+    const chiikawa = document.createElement('div');
+    chiikawa.classList.add('floating-chiikawa');
+    const randomImage = chiikawaImages[Math.floor(Math.random() * chiikawaImages.length)]; // สุ่มรูปชิกาว่า
+    chiikawa.style.backgroundImage = `url('${randomImage}')`;
+    chiikawa.style.left = Math.random() * 100 + 'vw'; // สุ่มตำแหน่งแนวนอน
+    chiikawa.style.animationDuration = Math.random() * 5 + 5 + 's'; // สุ่มความเร็ว (5-10 วินาที)
+    chiikawa.style.opacity = Math.random() * 0.5 + 0.3; // สุ่มความโปร่งแสง
+
+    document.body.appendChild(chiikawa);
+
+    // ลบชิกาว่าออกหลังจากลอยเสร็จแล้ว
+    setTimeout(() => {
+        chiikawa.remove();
+    }, 10000); // ต้องตรงกับ animationDuration สูงสุด (10s)
+}
+
+// เรียกใช้ฟังก์ชันสร้างชิกาว่าทุกๆ 0.5 วินาที
+setInterval(createFloatingChiikawa, 500);
+    
+    
                                                                    </html>
                                                                    
