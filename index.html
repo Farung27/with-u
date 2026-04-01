@@ -95,34 +95,7 @@
     const today = new Date();
     const diffDays = Math.ceil(Math.abs(today - startDate) / (1000 * 60 * 60 * 24));
     document.getElementById('counter').innerText = diffDays + " วันแล้วนะ";
-
-    // ฟังก์ชันเล่น/หยุดเพลง และหมุนแผ่นเสียง
-    function toggleMusic() {
-        if (song.paused) {
-            song.play();
-            record.classList.add("playing");
-        } else {
-            song.pause();
-            record.classList.remove("playing");
-        }
-    }
-
-    // ฟังก์ชันเปิดจดหมายพร้อมพลุ
-    function openLetter() {
-        document.getElementById('letterOverlay').style.display = 'flex';
-        // พลุกระดาษฉลอง
-        confetti({ particleCount: 200, spread: 80, origin: { y: 0.7 } });
-    }
-
-    // ฟังก์ชันปิดจดหมาย
-    function closeLetter() {
-        document.getElementById('letterOverlay').style.display = 'none';
-    }
-</script>
-   
-    <style>
-    /* กล่องสุ่มพลังบวก */
-.lucky-box { 
+    lucky-box { 
     background: #ffe5ec; 
     padding: 15px; 
     border-radius: 20px; 
@@ -190,6 +163,33 @@ function randomLove() {
         });
     }
         }
+
+    // ฟังก์ชันเล่น/หยุดเพลง และหมุนแผ่นเสียง
+    function toggleMusic() {
+        if (song.paused) {
+            song.play();
+            record.classList.add("playing");
+        } else {
+            song.pause();
+            record.classList.remove("playing");
+        }
+    }
+
+    // ฟังก์ชันเปิดจดหมายพร้อมพลุ
+    function openLetter() {
+        document.getElementById('letterOverlay').style.display = 'flex';
+        // พลุกระดาษฉลอง
+        confetti({ particleCount: 200, spread: 80, origin: { y: 0.7 } });
+    }
+
+    // ฟังก์ชันปิดจดหมาย
+    function closeLetter() {
+        document.getElementById('letterOverlay').style.display = 'none';
+    }
+</script>
+   
+    
+.
         
         
     
