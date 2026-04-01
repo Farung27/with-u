@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ของขวัญให้เบ้บ </title>
+    <title>ของขวัญให้เบ้บ ❤️</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
         /* ฟอนต์ภาษาไทยนุ่มนวล */
@@ -16,18 +16,28 @@
         .vinyl-container { position: relative; width: 200px; height: 200px; margin: 20px auto; cursor: pointer; }
         .vinyl-record {
             width: 100%; height: 100%; border-radius: 50%; border: 10px solid #333;
-            /* รูปคู่ในแผ่นเสียง */
             background-image: url('https://i.pinimg.com/originals/ce/0c/33/ce0c330f88288009c536443c72b226e6.jpg'); 
             background-size: cover; background-position: center;
             animation: rotateVinyl 8s linear infinite; animation-play-state: paused;
         }
+        
+        /* ข้อความบนแผ่นเสียง */
+        .vinyl-text {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            color: white; font-weight: bold;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+            font-size: 14px; width: 80%;
+            pointer-events: none; z-index: 5;
+        }
+
         .playing { animation-play-state: running; }
         @keyframes rotateVinyl { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        /* สไตล์กล่องสุ่มพลังบวก (แก้ปัญหาสีหาย) */
+        /* สไตล์กล่องสุ่มพลังบวก */
         .lucky-box { background-color: #ffe5ec; padding: 15px; border-radius: 20px; margin: 20px 0; border: 2px dashed #ff4d6d; }
         .lucky-btn { background-color: #ff4d6d; color: white; border: none; padding: 10px 20px; border-radius: 15px; cursor: pointer; font-family: 'Kanit'; margin-top: 10px; transition: 0.3s; }
-        .lucky-btn:active { transform: scale(0.95); }
         #lucky-text { font-size: 16px; color: #ff4d6d; font-weight: bold; min-height: 45px; display: flex; align-items: center; justify-content: center; transition: opacity 0.2s; }
 
         /* สไตล์ชิกาว่าลอย */
@@ -54,17 +64,18 @@
 <body>
 
 <div class="container">
-    <h2 style="margin-bottom: 5px;">Happy Anniversary babii</h2>
+    <h2 style="margin-bottom: 5px;">Happy Anniversary babii ❤️</h2>
     <p style="font-size: 13px; color: #ff85a1;">(จิ้มที่แผ่นเสียงเพื่อฟังเพลงนะ)</p>
     
     <div class="vinyl-container" onclick="toggleMusic()">
         <div id="record" class="vinyl-record"></div>
+        <div class="vinyl-text">ของขวัญ - THE TOYS 🎵<br> u are my gift</div>
     </div>
     
     <div id="counter" style="font-size: 20px; margin: 10px 0; font-weight: bold;">... วันแล้วนะ</div>
 
     <div class="lucky-box">
-        <div id="lucky-text">จิ้มปุ่มเพื่อรับพลังบวกนะเบ้บ </div>
+        <div id="lucky-text">จิ้มปุ่มเพื่อรับพลังบวกนะเบ้บ ☁️</div>
         <button type="button" class="lucky-btn" onclick="randomLove()">สุ่มคำบอกรัก </button>
     </div>
 
@@ -76,7 +87,7 @@
 <div id="letterOverlay" class="overlay">
     <div class="letter-content">
         <span class="close-btn" onclick="closeLetter()">&times;</span>
-        <h3 style="color: #ff4d6d;">to mygf </h3>
+        <h3 style="color: #ff4d6d;">to my girlfriend </h3>
         <p>
             ขอบคุณที่อยู่ด้วยกันมาจนถึงวันนี้นะจ๊ะ... มีความสุขมากๆ เลยที่มีเธอเข้ามาทำให้ชีวิตของเค้ามีสีสันมากขึ้น เค้ามีความสุขมากที่มีเธออยู่ เค้าหวังว่าจะมีเธอแบบนี้ไปเรื่อยๆ จนได้ทำในสิ่งที่แพลนกันไว้ ทั้งที่เที่ยวที่อยากไป สิ่งที่ได้ทำด้วยกัน <br><br>
             ถึงบางครั้งเค้าจะทำตัวไม่ดีไปบ้างก็ขอโทษด้วยนะ เค้ากลัวมากๆ เลยกลัวว่าเบ้บจะเบื่อกันซะก่อน แต่เค้าจะทำทุกวันที่มีกันอยู่ให้ดีที่สุดนะ อันนี้เค้าตั้งใจทำมาให้ หวังว่าจะชอบนะ อยู่ดูแลคนขี้น้อยใจคนนี้ไปนานๆ เลยนะ <br><br>
@@ -93,51 +104,44 @@
     const song = document.getElementById("mySong");
     const record = document.getElementById("record");
 
-    // 1. นับวัน (เปลี่ยนวันที่เริ่มคบกันตรงนี้)
     const startDate = new Date('2026-01-26'); 
     const diffDays = Math.ceil(Math.abs(new Date() - startDate) / (1000 * 60 * 60 * 24));
     document.getElementById('counter').innerText = diffDays + " วันแล้วนะ";
 
-    // 2. ฟังก์ชันสุ่มคำบอกรัก
     const quotes = [
         "วันนี้เบ้บเก่งที่สุดเลยนะ 🌟",
         "ภูมิใจในตัวเบ้บที่สุดในโลกเลย 💖",
-        "ยิ้มเยอะๆ นะ ยิ้มของเบ้บสวยที่สุด ",
+        "ยิ้มเยอะๆ นะ ยิ้มของเบ้บสวยที่สุด ^^",
         "เหนื่อยไหม? พักผ่อนเยอะๆ นะ เค้าอยู่ตรงนี้เสมอ ",
         "ขอบคุณที่เกิดมาให้เค้ารักนะ 🧸",
-        "วันนี้เบ้บทำดีที่สุดแล้ว เก่งมาก! ",
-        "รักเบ้บเท่าโลกเลยนะ รู้ตัวมั้ย ",
-        "ขอให้วันนี้เป็นวันที่ใจดีกับเบ้บนะ ",
+        "วันนี้เบ้บทำดีที่สุดแล้ว เก่งมาก! 🏆",
+        "รักเบ้บเท่าโลกเลยนะ รู้ตัวมั้ย 🌏",
+        "ขอให้วันนี้เป็นวันที่ใจดีกับเบ้บนะ ✨",
         "เบ้บเก่งที่สุดในโลกเล้ยยย! 💪",
         "กินข้าวเยอะๆ นะ เป็นห่วงนะจ๊ะ 🍚"
     ];
+
     function randomLove() {
         const text = document.getElementById('lucky-text');
         const randomIndex = Math.floor(Math.random() * quotes.length);
-        
         text.style.opacity = 0;
         setTimeout(() => {
             text.innerText = quotes[randomIndex];
             text.style.opacity = 1;
         }, 200);
-
-        // ยิงพลุเล็กๆ ตอนกดสุ่ม
         confetti({ particleCount: 40, spread: 50, origin: { y: 0.8 }, colors: ['#ff4d6d', '#ffffff', '#ffb6c1'] });
     }
 
-    // 3. เล่นเพลง / เปิดจดหมาย
     function toggleMusic() {
         if (song.paused) { song.play(); record.classList.add("playing"); }
         else { song.pause(); record.classList.remove("playing"); }
     }
     function openLetter() {
         document.getElementById('letterOverlay').style.display = 'flex';
-        // พลุตอนเปิดจดหมาย
         confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
     }
     function closeLetter() { document.getElementById('letterOverlay').style.display = 'none'; }
 
-    // 4. ชิกาว่าลอย
     const images = [
         'https://i.pinimg.com/originals/14/06/66/1406664973347528e1d5225103c8c6a0.png',
         'https://i.pinimg.com/originals/96/12/f2/9612f2796e626e382ba1752b1263884f.png'
@@ -151,9 +155,7 @@
         document.body.appendChild(c);
         setTimeout(() => c.remove(), 10000);
     }
-    // สร้างชิกาว่าใหม่ทุกๆ 0.8 วินาที
     setInterval(createChiikawa, 800);
 </script>
-
 </body>
 </html>
