@@ -119,3 +119,77 @@
         document.getElementById('letterOverlay').style.display = 'none';
     }
 </script>
+    <style>
+    /* กล่องสุ่มพลังบวก */
+.lucky-box { 
+    background: #ffe5ec; 
+    padding: 15px; 
+    border-radius: 20px; 
+    margin: 20px 0; 
+    border: 2px dashed #ff4d6d; 
+}
+.lucky-btn { 
+    background: #ff4d6d; 
+    color: white; 
+    border: none; 
+    padding: 8px 20px; 
+    border-radius: 15px; 
+    cursor: pointer; 
+    font-family: 'Kanit', sans-serif; 
+    margin-top: 10px; 
+    transition: 0.3s;
+}
+.lucky-btn:active { transform: scale(0.9); }
+#lucky-text { 
+    font-size: 15px; 
+    color: #cc445b; 
+    min-height: 40px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-weight: 500; 
+    transition: opacity 0.2s;
+}
+    <div class="lucky-box">
+    <div id="lucky-text">จิ้มปุ่มข้างล่างเพื่อรับพลังบวกนะเบ้บ 😼</div>
+    <button class="lucky-btn" onclick="randomLove()">สุ่มคำบอกรักเบบิ๋</button>
+</div>
+        // รายชื่อคำที่อยากให้สุ่ม (แก้ข้อความข้างในได้ตามใจชอบเลยครับ)
+const quotes = [
+    "วันนี้เบ้บเก่งที่สุดเลยนะ 🌟",
+    "ภูมิใจในตัวเบ้บที่สุดในโลกเลย 💖",
+    "ยิ้มเยอะๆ นะ ยิ้มของเบ้บสวยที่สุด ^^",
+    "เหนื่อยไหม? พักผ่อนเยอะๆ นะ เค้าอยู่ตรงนี้เสมอ ",
+    "ขอบคุณที่เกิดมาให้เค้ารักนะ 🧸",
+    "วันนี้เบ้บทำดีที่สุดแล้ว เก่งมาก! ",
+    "รักเบ้บเท่าโลกเลยนะ รู้ตัวมั้ย ",
+    "ขอให้วันนี้เป็นวันที่ใจดีกับเบ้บนะ ",
+    "เบ้บเก่งที่สุดในโลกเล้ยยย! 💪",
+    "กินข้าวเยอะๆ นะ เป็นห่วงนะจ๊ะ 🍚"
+];
+
+function randomLove() {
+    const text = document.getElementById('lucky-text');
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    
+    // เอฟเฟกต์ตอนเปลี่ยนคำ
+    text.style.opacity = 0;
+    setTimeout(() => {
+        text.innerText = quotes[randomIndex];
+        text.style.opacity = 1;
+    }, 200);
+
+    // ยิงพลุเล็กๆ ตอนกดสุ่ม (ถ้าในหน้าเว็บมี library confetti อยู่แล้วจะทำงานครับ)
+    if (typeof confetti === 'function') {
+        confetti({ 
+            particleCount: 40, 
+            spread: 50, 
+            origin: { y: 0.8 }, 
+            colors: ['#ff4d6d', '#ffffff', '#ffb6c1'] 
+        });
+    }
+        }
+        
+        
+    
+    
