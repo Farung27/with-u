@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Month Babe 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;700&family=Itim&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --pink-pastel: #ffdeeb;
+            --cream-white: #fffdf5;
+            --pink-accent: #ff85a1;
+            --text-gray: #7a5c61;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--pink-pastel);
+            font-family: 'Mali', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* พื้นหลังหัวใจตก (แทนที่กลิตเตอร์) */
+        .falling-heart {
+            position: absolute;
+            color: var(--pink-accent);
+            pointer-events: none;
+            opacity: 0.8;
+            filter: drop-shadow(0 0 3px rgba(255,255,255,0.5));
+            animation: fall linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* กล่องของขวัญดุ๊กดิ๊ก */
+        #gift-wrapper {
+            cursor: pointer;
+            text-align: center;
+            z-index: 100;
+            transition: all 0.5s ease;
+        }
+
+        .gift-emoji {
+            font-size: 130px;
+            display: inline-block;
+            animation: wiggle 1s infinite ease-in-out;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-10deg) scale(1); }
+            50% { transform: rotate(10deg) scale(1.1); }
+        }
+
+        .click-me {
+            color: white;
+            font-size: 26px;
+            font-weight: bold;
+            margin-top: 15px;
+            background: var(--pink-accent);
+            padding: 8px 30px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(255, 133, 161, 0.4);
+            font-family: 'Itim', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ส่วนแสดงอวยพร (แมว + การ์ด) */
+        #content-area {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            z-index: 101;
+            max-width: 90%;
+            animation: popUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popUp {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .cat-gif {
+            width: 180px;
+            margin-bottom: -15px;
+            z-index: 2;
+        }
+
+        .wish-card {
+            background: var(--cream-white);
+            border: 6px solid white;
+            border-radius: 40px;
+            padding: 30px;
+            box-shadow: 0 15px 40px rgba(255, 133, 161, 0.2);
+            text-align: center;
+            color: var(--text-gray);
+            line-height: 1.8;
+            position: relative;
+            max-width: 400px;
+        }
+
+        .wish-header {
+            color: var(--pink-accent);
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .wish-body {
+            font-size: 18px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            text-align: center;
+        }
+
+        .signature {
+            display: block;
+            margin-top: 20px;
+            font-weight: bold;
+            color: var(--pink-accent);
+            font-size: 22px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="heart-box"></div>
+
+    <div id="gift-wrapper" onclick="openPresent()">
+        <div class="gift-emoji">🎁</div>
+        <div class="click-me">open gift</div>
+    </div>
+
+    <div id="content-area">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp4Zmt4YmN4Zmt4YmN4Zmt4YmN4Zmt4YmN4Zmt4YmN4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/v6aOebdclHk701TMRa/giphy.gif" class="cat-gif" alt="Cute Cat">
+        
+        <div class="wish-card">
+            <span class="wish-header">เย้ เดือนใหม่แล้ว! ✨</span>
+            <div class="wish-body">
+" เย้เดือนใหม่แล้ว อยากให้เบ้บอยู่อวยพรทุกเดือนเยย  เค้ารักเธอมากแล้วก็ไม่อยากเสียเธอไปเลย   ขอหั้ยเดือนนี้เป้นเดือนที่ดี แล้วก้ผ่านเดือนไปด้วยกันนะ เรื่องโครงงานก็สุ้สุ้ เค้าเป้นกำลังจัยให้ตะเม๋อ ขอหั้ยเป้นเดือนที่เธอมีรอยยิ้มเย้อๆ  วันหนัยที่มันไม่น่ารักก้มากอดเค้าน้ะ
+ไม่ว่าเรื่องอะรัยก็ขอหั้ยผ่านไปด้ายด้วยดี 
+มุมุน้าอ้วม "
+            </div>
+            <span class="signature">💖 รักนะอ้วน 💖</span>
+        </div>
+    </div>
+
+    <script>
+        // ฟังก์ชันสร้างหัวใจตกตลอดเวลา
+        const heartBox = document.getElementById('heart-box');
+        const heartIcons = ['❤️', '💖', '💗', '💓', '🌸'];
+        
+        function createFallingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'falling-heart';
+            heart.innerHTML = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+            
+            // สุ่มตำแหน่งและขนาด
+            const size = Math.random() * 20 + 10 + 'px';
+            heart.style.fontSize = size;
+            heart.style.left = Math.random() * 100 + 'vw';
+            
+            // สุ่มเวลาที่ใช้ในการตก (4-8 วินาที)
+            const duration = Math.random() * 4 + 4 + 's';
+            heart.style.animationDuration = duration;
+            
+            heartBox.appendChild(heart);
+            
+            // ลบออกเมื่อจบ animation เพื่อไม่ให้หนักเครื่อง
+            setTimeout(() => { heart.remove(); }, 8000);
+        }
+
+        // ปล่อยหัวใจออกมาเรื่อยๆ
+        setInterval(createFallingHeart, 200);
+
+        // ฟังก์ชันเมื่อกด "open gift"
+        function openPresent() {
+            // 1. จุดพลุ Confetti สีหวานๆ
+            var count = 200;
+            var defaults = { origin: { y: 0.7 } };
+
+            function fire(particleRatio, opts) {
+              confetti(Object.assign({}, defaults, opts, {
+                particleCount: Math.floor(count * particleRatio),
+                colors: ['#ff85a1', '#ffffff', '#ffdeeb']
+              }));
+            }
+
+            fire(0.25, { spread: 26, startVelocity: 55, });
+            fire(0.2, { spread: 60, });
+            fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+            fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+            fire(0.1, { spread: 120, startVelocity: 45, });
+
+            // 2. ซ่อนกล่องของขวัญ และแสดงข้อความอวยพร
+            document.getElementById('gift-wrapper').style.display = 'none';
+            document.getElementById('content-area').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>
